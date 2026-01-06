@@ -1,156 +1,273 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Undangan Acara</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Undangan Ulang Tahun</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<style>
+:root {
+  --gold: #c9a45c;
+  --gold-bright: #e6cf8a;
+  --bg: #f4f4f4;
+}
 
-    body {
-      font-family: 'Playfair Display', serif;
-      background: #ffffff;
-      color: #222;
-      text-align: center;
-      scroll-behavior: smooth;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    section {
-      padding: 100px 20px;
-    }
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: #444;
+}
 
-    /* ===== HEADLINE ===== */
-    h1 {
-      font-size: 48px;
-      color: #d4af37;
-      letter-spacing: 4px;
-      text-shadow: 0 0 15px rgba(212,175,55,0.6);
-      animation: goldGlow 2.5s infinite ease-in-out;
-    }
+/* CARD */
+.card {
+  max-width: 420px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 44px 32px;
+  border-radius: 22px;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.08);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
 
-    @keyframes goldGlow {
-      0%, 100% { text-shadow: 0 0 10px #d4af37; }
-      50% { text-shadow: 0 0 30px #ffd700; }
-    }
+/* ================= BLINK ================= */
+.blink {
+  position: absolute;
+  pointer-events: none;
+  animation: blink 3.8s infinite ease-in-out;
+}
 
-    p {
-      margin-top: 20px;
-      font-size: 18px;
-    }
+.blink::before,
+.blink::after {
+  content: "";
+  position: absolute;
+  background: linear-gradient(to right, transparent, var(--gold-bright), transparent);
+  box-shadow:
+    0 0 14px rgba(201,164,92,.9),
+    0 0 32px rgba(201,164,92,.6);
+}
 
-    /* ===== RSVP BUTTON ===== */
-    .rsvp-btn {
-      display: inline-block;
-      margin-top: 50px;
-      padding: 16px 40px;
-      font-size: 18px;
-      font-weight: bold;
-      color: #d4af37;
-      border: 2px solid #d4af37;
-      border-radius: 50px;
-      text-decoration: none;
-      letter-spacing: 3px;
-      transition: all 0.3s ease;
-      animation: blinkGold 2s infinite;
-    }
+.blink::before {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 3px;
+}
 
-    .rsvp-btn:hover {
-      background: linear-gradient(45deg, #f9e076, #d4af37);
-      color: #000;
-      box-shadow: 0 0 25px rgba(212,175,55,0.8);
-      transform: scale(1.1);
-    }
+.blink::after {
+  left: 50%;
+  top: 0;
+  width: 3px;
+  height: 100%;
+}
 
-    @keyframes blinkGold {
-      0%, 100% {
-        box-shadow: 0 0 5px rgba(212,175,55,0.4);
-      }
-      50% {
-        box-shadow: 0 0 20px rgba(212,175,55,1);
-      }
-    }
+.blink.big   { width: 74px; height: 74px; }
+.blink.mid   { width: 56px; height: 56px; }
+.blink.small { width: 34px; height: 34px; opacity: .7; }
 
-    /* ===== RSVP FORM ===== */
-    #rsvp {
-      background: #fafafa;
-    }
+@keyframes blink {
+  0%,100% { opacity: .35; transform: scale(.9); }
+  50% { opacity: 1; transform: scale(1.18); }
+}
 
-    form {
-      max-width: 400px;
-      margin: auto;
-      background: #fff;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-    }
+.b1 { top: 14px; left: 14px; }
+.b2 { top: 18px; right: 14px; animation-delay:.6s; }
+.b3 { top: 110px; left: 4px; animation-delay:1.2s; }
+.b4 { top: 160px; right: 4px; animation-delay:1.8s; }
 
-    form h2 {
-      color: #d4af37;
-      margin-bottom: 30px;
-    }
+.b5 { bottom: 160px; left: 4px; animation-delay:.9s; }
+.b6 { bottom: 110px; right: 4px; animation-delay:1.5s; }
+.b7 { bottom: 18px; left: 14px; animation-delay:2.1s; }
+.b8 { bottom: 18px; right: 14px; animation-delay:2.6s; }
 
-    input, button {
-      width: 100%;
-      padding: 14px;
-      margin-bottom: 15px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-    }
+/* ================= TEXT ================= */
+.subtitle {
+  letter-spacing: 2px;
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 12px;
+}
 
-    button {
-      background: #d4af37;
-      border: none;
-      color: #000;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  font-weight: 700;
+  margin: 0 0 10px;
+  color: var(--gold);
+  letter-spacing: .5px;
+  text-shadow: 0 6px 18px rgba(201,164,92,.35);
+}
 
-    button:hover {
-      background: #ffd700;
-      box-shadow: 0 0 15px rgba(212,175,55,0.8);
-    }
+.name {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  margin-top: 20px;
+  letter-spacing: 1px;
+  color: var(--gold);
+}
 
-    footer {
-      padding: 30px;
-      font-size: 14px;
-      color: #888;
-    }
-  </style>
+.age {
+  font-size: 64px;
+  font-weight: 700;
+  margin: 10px 0 30px;
+  color: var(--gold);
+}
+
+.divider {
+  width: 60px;
+  height: 1px;
+  background: rgba(201,164,92,.5);
+  margin: 30px auto;
+}
+
+.details {
+  display: grid;
+  gap: 16px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* ================= MAP ================= */
+.map-link {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 13px;
+  letter-spacing: 1.4px;
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201,164,92,.5);
+  padding-bottom: 2px;
+  position: relative;
+  z-index: 5;
+}
+
+.map-link:hover {
+  color: var(--gold-bright);
+  border-color: var(--gold-bright);
+}
+
+/* ================= RSVP ================= */
+.rsvp {
+  margin-top: 34px;
+}
+
+.rsvp a {
+  display: inline-block;
+  padding: 12px 38px;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: .3s ease;
+  position: relative;
+  z-index: 5;
+}
+
+/* 🔥 FIX: RSVP TETAP EMAS */
+.rsvp a:hover {
+  background: rgba(201,164,92,0.12);
+  color: var(--gold);
+  box-shadow: 0 0 14px rgba(201,164,92,.6);
+  transform: translateY(-2px);
+}
+
+.rsvp a:active {
+  background: rgba(201,164,92,0.18);
+  color: var(--gold);
+}
+
+footer {
+  margin-top: 36px;
+  font-size: 12px;
+  color: #999;
+}
+</style>
 </head>
 
 <body>
 
-  <!-- HERO -->
-  <section id="home">
-    <h1>UNDANGAN ACARA</h1>
-    <p>Kami mengundang Anda untuk hadir</p>
+<div class="card">
 
-    <a href="#rsvp" class="rsvp-btn">RSVP</a>
-  </section>
+  <div class="blink big b1"></div>
+  <div class="blink mid b2"></div>
+  <div class="blink small b3"></div>
+  <div class="blink mid b4"></div>
 
-  <!-- RSVP -->
-  <section id="rsvp">
-    <form>
-      <h2>RSVP</h2>
-      <input type="text" placeholder="Nama Anda" required>
-      <input type="number" placeholder="Jumlah Hadir" required>
-      <button type="submit">Kirim RSVP</button>
+  <div class="blink small b5"></div>
+  <div class="blink mid b6"></div>
+  <div class="blink big b7"></div>
+  <div class="blink small b8"></div>
+
+  <div class="subtitle">YOU'RE INVITED TO MY</div>
+  <h1>Birthday Party</h1>
+
+  <div class="name">KEDY</div>
+  <div class="subtitle">is Turning</div>
+  <div class="age">17</div>
+
+  <div class="divider"></div>
+
+  <h3 style="font-family:'Playfair Display', serif; font-weight:500;">Event Details</h3>
+
+  <div class="details">
+    <div>Jumat, 16 Januari 2026</div>
+    <div>At 06:00 PM</div>
+    <div>Wistara Cafe<br>Jl. Mahendradatta No. 9 Denpasar Barat</div>
+  </div>
+
+  <a class="map-link" href="https://maps.app.goo.gl/imsGjJJWZFkVgnGw6" target="_blank">
+    VIEW LOCATION ON MAP
+  </a>
+
+  <div class="divider"></div>
+
+  <div class="rsvp">
+    <p style="font-size:13px; color:#777;">Please let me know if you can attend</p>
+    <a href="#rsvp-form">RSVP NOW</a>
+  </div>
+
+  <div id="rsvp-form" style="margin-top:30px;">
+    <form onsubmit="sendRSVP(event)" style="display:grid; gap:12px;">
+      <input type="text" id="name" placeholder="Nama Anda" required
+        style="padding:12px 16px; border-radius:12px; border:1px solid #ddd; font-size:14px;">
+      <select id="attendance" required
+        style="padding:12px 16px; border-radius:12px; border:1px solid #ddd; font-size:14px;">
+        <option value="">Konfirmasi Kehadiran</option>
+        <option value="Hadir">Hadir</option>
+        <option value="Tidak Hadir">Tidak Hadir</option>
+      </select>
+      <button type="submit"
+        style="padding:12px; border-radius:25px; border:none; background:#e5e5e5; cursor:pointer;">
+        Kirim RSVP
+      </button>
     </form>
-  </section>
+  </div>
 
   <footer>
-    © 2026 Undangan Digital
+    Looking forward to celebrating with you!
   </footer>
+
+</div>
+
+<script>
+function sendRSVP(e) {
+  e.preventDefault();
+  const name = document.getElementById('name').value;
+  const attendance = document.getElementById('attendance').value;
+  const phone = '6289527441160';
+  const message = `Halo, saya ${name}. Saya konfirmasi: ${attendance} di acara ulang tahun.`;
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+}
+</script>
 
 </body>
 </html>
